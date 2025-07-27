@@ -8,22 +8,24 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
-    <header>
-        <h1>Location & Map</h1>
+    <div class="sidebar">
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="pricing.html">Pricing & Availability</a></li>
                 <li><a href="location.html">Location & Map</a></li>
                 <li><a href="book.html">Book a Spot</a></li>
+                <li><a href="customer-login.html">Customer Login</a></li>
             </ul>
         </nav>
-    </header>
-    <main>
-        <h2>Our Facility Location</h2>
-        <p>123 RV Lane, YourTown, ST 12345</p>
-        <h3>Site Map</h3>
-        <div id="map" style="height: 400px;"></div>
+    </div>
+    <main style="margin-left:240px; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+        <h2 style="color:#fff; text-shadow:2px 2px 8px #2c3e50;">Our Facility Location</h2>
+        <p style="color:#fff; font-size:1.2rem; text-shadow:1px 1px 6px #2c3e50;">
+            123 RV Lane, YourTown, ST 12345
+        </p>
+        <h3 style="color:#fff; text-shadow:2px 2px 8px #2c3e50;">Site Map</h3>
+        <div id="map" style="width:600px; height:400px; border-radius:8px; box-shadow:0 2px 8px rgba(44,62,80,0.15);"></div>
     </main>
     <!-- Leaflet JS (add just before </body>) -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -41,6 +43,6 @@
     L.marker([facilityLat, facilityLng]).addTo(map)
         .bindPopup('RV Storage Facility')
         .openPopup();
-</script>
+    </script>
 </body>
 </html>

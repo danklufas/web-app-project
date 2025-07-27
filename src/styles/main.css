@@ -18,53 +18,74 @@ body::before {
     z-index: -1;
 }
 
-header {
-    background: #2c3e50;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0 0;
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 220px;
+    background: rgba(44,62,80,0.85);
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 20px;
+    z-index: 2;
 }
 
-nav a {
+.sidebar nav ul {
+    flex-direction: column;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar nav a {
     color: #fff;
+    font-size: 1.2rem;
     text-decoration: none;
     font-weight: bold;
+    padding: 8px 0;
+    display: block;
 }
 
-nav a:hover {
+.sidebar nav a:hover {
     text-decoration: underline;
 }
 
+/* Remove white box and card effect from main and form */
 main {
-    max-width: 600px;
-    margin: 40px auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-left: 240px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    max-width: none;
 }
+
 form {
-    background: rgba(255,255,255,0.95);
-    padding: 24px 32px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    background: none;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    max-width: 350px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    animation: fadeIn 0.7s ease;
 }
 
+/* Inputs and labels for visibility */
 form label {
     font-weight: bold;
     margin-bottom: 4px;
+    color: #fff;
+    text-shadow: 1px 1px 6px #2c3e50;
 }
 
 form input[type="text"],
@@ -78,6 +99,8 @@ form select {
     font-size: 1rem;
     width: 100%;
     box-sizing: border-box;
+    background: rgba(255,255,255,0.85);
+    color: #222;
 }
 
 form input[type="checkbox"] {
@@ -99,6 +122,7 @@ form button[type="submit"] {
 form button[type="submit"]:hover {
     background: #1a242f;
 }
+
 .rental-type-group {
     display: flex;
     align-items: center;
@@ -109,47 +133,8 @@ form button[type="submit"]:hover {
 .rental-type-group label {
     font-weight: normal;
     margin-bottom: 0;
-}
-
-form {
-    padding: 16px 20px;
-    gap: 10px;
-}
-
-form label {
-    margin-bottom: 2px;
-}
-
-form input[type="text"],
-form input[type="email"],
-form input[type="tel"],
-form input[type="date"],
-form select {
-    padding: 6px;
-    font-size: 0.95rem;
-    margin-bottom: 8px;
-}
-
-.rental-type-group {
-    gap: 16px;
-    margin-bottom: 4px;
-}
-
-form button[type="submit"] {
-    padding: 10px;
-    margin-top: 8px;
-}
-
-/* Card effect for the form */
-form {
-    background: rgba(255,255,255,0.85);
-    padding: 24px 32px;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(44,62,80,0.12);
-    border: 1px solid #e0e0e0;
-    max-width: 400px;
-    margin: 40px auto;
-    animation: fadeIn 0.7s ease;
+    color: #fff;
+    text-shadow: 1px 1px 6px #2c3e50;
 }
 
 /* Fade-in animation */
