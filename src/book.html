@@ -19,26 +19,84 @@
     </header>
     <main>
         <h2>Reserve Your RV Storage Spot</h2>
-        <form>
+        <form action="https://formspree.io/f/mgvzyeye" method="POST">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br><br>
             
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required><br><br>
             
+            <label for="phone">Phone Number:</label>
+<input type="tel" id="phone" name="phone" required placeholder="123-456-7890"><br><br>
+...
+<!-- Place this script just before </body> -->
+<script>
+document.getElementById('phone').addEventListener('input', function(e) {
+    let x = e.target.value.replace(/\D/g, '').slice(0,10);
+    let formatted = x;
+    if (x.length > 6) {
+        formatted = x.slice(0,3) + '-' + x.slice(3,6) + '-' + x.slice(6);
+    } else if (x.length > 3) {
+        formatted = x.slice(0,3) + '-' + x.slice(3);
+    }
+    e.target.value = formatted;
+});
+</script>
+
             <label for="rv-type">RV Type:</label>
-            <input type="text" id="rv-type" name="rv-type"><br><br>
+<select id="rv-type" name="rv-type" required>
+    <option value="">Select RV Type</option>
+    <option value="Class A">Class A</option>
+    <option value="Class B">Class B</option>
+    <option value="Class C">Class C</option>
+    <option value="Fifth Wheel">Fifth Wheel</option>
+    <option value="Toy Hauler">Toy Hauler</option>
+    <option value="Travel Trailer">Travel Trailer</option>
+    <option value="Pop-up Camper">Pop-up Camper</option>
+    <option value="Tiny Travel Trailer">Tiny Travel Trailer</option>
+    <option value="Truck Camper">Truck Camper</option>
+</select><br><br>
+           <label for="length">Length:</label>
+<select id="length" name="length" required>
+    <option value="">Select Length</option>
+    <option value="4-8ft">4-8ft</option>
+    <option value="9-12ft">9-12ft</option>
+    <option value="13-18ft">13-18ft</option>
+    <option value="19-24ft">19-24ft</option>
+    <option value="25-30ft">25-30ft</option>
+    <option value="31+ft">31+ft</option>
+</select><br><br>               
+
+            <label for="dates">Date Needed:</label>
+            <input type="date" id="dates" name="dates" required><br><br>
             
-            <label for="spot-type">Spot Type:</label>
-            <select id="spot-type" name="spot-type">
-                <option value="covered">Covered</option>
-                <option value="uncovered">Uncovered</option>
-                <option value="premium">Premium</option>
-            </select><br><br>
-            
-            <label for="dates">Dates Needed:</label>
-            <input type="text" id="dates" name="dates"><br><br>
-            
+            <label>Rental Type:</label>
+<input type="checkbox" id="short-term" name="rental-type" value="Short Term">
+<label for="short-term">Short Term</label>
+<input type="checkbox" id="long-term" name="rental-type" value="Long Term">
+<label for="long-term">Long Term</label><br><br>
+
+<div id="end-date-container" style="display:none;">
+    <label for="end-date">End Date:</label>
+    <input type="date" id="end-date" name="end-date"><br><br>
+</div>
+
+<script>
+document.getElementById('short-term').addEventListener('change', function() {
+    document.getElementById('end-date-container').style.display = this.checked ? 'block' : 'none';
+});
+document.getElementById('long-term').addEventListener('change', function() {
+    if (this.checked) {
+        document.getElementById('end-date-container').style.display = 'none';
+        document.getElementById('short-term').checked = false;
+    }
+});
+document.getElementById('short-term').addEventListener('change', function() {
+    if (this.checked) {
+        document.getElementById('long-term').checked = false;
+    }
+});
+</script>
             <button type="submit">Submit Booking Request</button>
         </form>
     </main>
