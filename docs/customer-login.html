@@ -40,16 +40,19 @@
         const output = document.getElementById('account-info');
         if (info) {
             output.innerHTML = `
-                <h3>Welcome, ${info.name}!</h3>
-                <p>Site Number: <strong>${info.site}</strong></p>
-                <form id="service-form">
-                    <label>
-                        <input type="checkbox" name="service" value="Propane Refill" id="propane-checkbox">
+                <h3 style="font-size:2rem; color:#fff; text-shadow:2px 2px 8px #2c3e50;">Welcome, ${info.name}!</h3>
+                <p style="font-size:1.2rem; color:#fff;">Site Number: <strong>${info.site}</strong></p>
+                <form id="service-form" action="https://formspree.io/f/xvgqrgaj" method="POST" style="max-width:350px; width:100%;">
+                    <input type="hidden" name="_replyto" value="dan@micromanage.ca">
+                    <input type="hidden" name="Customer Name" value="${info.name}">
+                    <input type="hidden" name="Site Number" value="${info.site}">
+                    <label style="font-size:1.2rem;">
+                        <input type="checkbox" name="Propane Refill" id="propane-checkbox">
                         Propane Refill
                     </label>
                     <div id="propane-details" style="display:none; margin-left:24px; margin-bottom:8px;">
                         <label for="propane-size" style="color:#fff;">Tank Size:</label>
-                        <select id="propane-size">
+                        <select id="propane-size" name="Propane Tank Size">
                             <option value="">Select size</option>
                             <option value="20lb">20lb (small)</option>
                             <option value="30lb">30lb (medium)</option>
@@ -57,7 +60,7 @@
                         </select>
                         <div id="propane-qty-area" style="display:none; margin-top:8px;">
                             <label for="propane-qty" style="color:#fff;">Quantity:</label>
-                            <select id="propane-qty">
+                            <select id="propane-qty" name="Propane Quantity">
                                 <option value="">Select quantity</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -68,13 +71,13 @@
                             </select>
                         </div>
                     </div>
-                    <label style="margin-top:12px;">
-                        <input type="checkbox" name="service" value="Firewood Delivery" id="firewood-checkbox">
+                    <label style="font-size:1.2rem; margin-top:12px;">
+                        <input type="checkbox" name="Firewood Delivery" id="firewood-checkbox">
                         Firewood Delivery
                     </label>
                     <div id="firewood-details" style="display:none; margin-left:24px; margin-bottom:8px;">
                         <label for="firewood-qty" style="color:#fff;">Number of bundles:</label>
-                        <select id="firewood-qty">
+                        <select id="firewood-qty" name="Firewood Bundles">
                             <option value="">Select bundles</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -88,21 +91,21 @@
                             <option value="10">10</option>
                         </select>
                     </div>
-                    <label style="margin-top:12px;">
-                        <input type="checkbox" name="service" value="Other Service" id="other-service-checkbox">
+                    <label style="font-size:1.2rem; margin-top:12px;">
+                        <input type="checkbox" name="Other Service" id="other-service-checkbox">
                         Service Request
                     </label>
                     <div id="other-service-details" style="display:none; margin-left:24px; margin-bottom:8px;">
                         <label for="other-service-text" style="color:#fff;">Describe your service:</label>
-                        <input type="text" id="other-service-text" style="width:90%;">
+                        <input type="text" id="other-service-text" name="Other Service Details" style="width:90%;">
                     </div>
-                    <label style="margin-top:12px;">
-                        <input type="checkbox" name="service" value="Winterizing/De-winterize" id="winter-checkbox">
+                    <label style="font-size:1.2rem; margin-top:12px;">
+                        <input type="checkbox" name="Winterizing/De-winterize" id="winter-checkbox">
                         Winterizing / De-winterize
                     </label>
                     <div id="winter-details" style="display:none; margin-left:24px; margin-bottom:8px;">
                         <label for="winter-date" style="color:#fff;">Requested Date:</label>
-                        <input type="date" id="winter-date">
+                        <input type="date" id="winter-date" name="Winterizing Date">
                     </div>
                     <button type="submit" style="margin-top:16px;">Request Service</button>
                 </form>
@@ -137,65 +140,6 @@
             document.getElementById('winter-checkbox').addEventListener('change', function() {
                 document.getElementById('winter-details').style.display = this.checked ? 'block' : 'none';
                 document.getElementById('winter-date').value = "";
-            });
-
-            document.getElementById('service-form').addEventListener('submit', function(ev) {
-                ev.preventDefault();
-                const services = [];
-                let details = "";
-
-                // Propane
-                if (document.getElementById('propane-checkbox').checked) {
-                    const size = document.getElementById('propane-size').value;
-                    const qty = document.getElementById('propane-qty').value;
-                    if (size && qty) {
-                        services.push("Propane Refill");
-                        details += ` | Propane: Size=${size}, Quantity=${qty}`;
-                    } else {
-                        document.getElementById('service-message').innerText = "Please select tank size and quantity for propane.";
-                        return;
-                    }
-                }
-
-                // Firewood
-                if (document.getElementById('firewood-checkbox').checked) {
-                    const bundles = document.getElementById('firewood-qty').value;
-                    if (bundles) {
-                        services.push("Firewood Delivery");
-                        details += ` | Firewood: Bundles=${bundles}`;
-                    } else {
-                        document.getElementById('service-message').innerText = "Please select number of firewood bundles.";
-                        return;
-                    }
-                }
-
-                // Other Service
-                if (document.getElementById('other-service-checkbox').checked) {
-                    const otherText = document.getElementById('other-service-text').value.trim();
-                    if (otherText) {
-                        services.push("Other Service");
-                        details += ` | Service Request: ${otherText}`;
-                    } else {
-                        document.getElementById('service-message').innerText = "Please describe your service request.";
-                        return;
-                    }
-                }
-
-                // Winterizing
-                if (document.getElementById('winter-checkbox').checked) {
-                    const winterDate = document.getElementById('winter-date').value;
-                    if (winterDate) {
-                        services.push("Winterizing/De-winterize");
-                        details += ` | Winterizing Date: ${winterDate}`;
-                    } else {
-                        document.getElementById('service-message').innerText = "Please select a date for winterizing/de-winterize.";
-                        return;
-                    }
-                }
-
-                document.getElementById('service-message').innerText = services.length
-                    ? "Service request submitted: " + services.join(", ") + details
-                    : "Please select a service.";
             });
         } else {
             output.innerHTML = "<p>No account found for this email.</p>";
