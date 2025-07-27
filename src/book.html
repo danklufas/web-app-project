@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book a Spot</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header>
+        <h1>Book a Spot</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pricing.html">Pricing & Availability</a></li>
+                <li><a href="location.html">Location & Map</a></li>
+                <li><a href="book.html">Book a Spot</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Reserve Your RV Storage Spot</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            
+            <label for="rv-type">RV Type:</label>
+            <input type="text" id="rv-type" name="rv-type"><br><br>
+            
+            <label for="spot-type">Spot Type:</label>
+            <select id="spot-type" name="spot-type">
+                <option value="covered">Covered</option>
+                <option value="uncovered">Uncovered</option>
+                <option value="premium">Premium</option>
+            </select><br><br>
+            
+            <label for="dates">Dates Needed:</label>
+            <input type="text" id="dates" name="dates"><br><br>
+            
+            <button type="submit">Submit Booking Request</button>
+        </form>
+    </main>
+</body>
+</html>
