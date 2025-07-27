@@ -1,0 +1,144 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f8f8f8;
+    background-image: url('rv-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: inherit;
+    filter: blur(8px);
+    z-index: -1;
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 220px;
+    background: rgba(44,62,80,0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 20px;
+    z-index: 2;
+}
+
+.sidebar nav ul {
+    flex-direction: column;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar nav a {
+    color: #fff;
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 0;
+    display: block;
+}
+
+.sidebar nav a:hover {
+    text-decoration: underline;
+}
+
+/* Remove white box and card effect from main and form */
+main {
+    margin-left: 240px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    max-width: none;
+}
+
+form {
+    background: none;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    max-width: 350px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: fadeIn 0.7s ease;
+}
+
+/* Inputs and labels for visibility */
+form label {
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #fff;
+    text-shadow: 1px 1px 6px #2c3e50;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"],
+form input[type="date"],
+form select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255,255,255,0.85);
+    color: #222;
+}
+
+form input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+form button[type="submit"] {
+    background: #2c3e50;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+form button[type="submit"]:hover {
+    background: #1a242f;
+}
+
+.rental-type-group {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 8px;
+}
+
+.rental-type-group label {
+    font-weight: normal;
+    margin-bottom: 0;
+    color: #fff;
+    text-shadow: 1px 1px 6px #2c3e50;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
+}
