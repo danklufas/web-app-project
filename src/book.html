@@ -28,8 +28,7 @@
             
             <label for="phone">Phone Number:</label>
 <input type="tel" id="phone" name="phone" required placeholder="123-456-7890"><br><br>
-...
-<!-- Place this script just before </body> -->
+
 <script>
 document.getElementById('phone').addEventListener('input', function(e) {
     let x = e.target.value.replace(/\D/g, '').slice(0,10);
@@ -70,11 +69,12 @@ document.getElementById('phone').addEventListener('input', function(e) {
             <label for="dates">Date Needed:</label>
             <input type="date" id="dates" name="dates" required><br><br>
             
-            <label>Rental Type:</label>
-<input type="checkbox" id="short-term" name="rental-type" value="Short Term">
-<label for="short-term">Short Term</label>
-<input type="checkbox" id="long-term" name="rental-type" value="Long Term">
-<label for="long-term">Long Term</label><br><br>
+           <div class="rental-type-group">
+    <input type="checkbox" id="short-term" name="rental-type" value="Short Term">
+    <label for="short-term">Short Term</label>
+    <input type="checkbox" id="long-term" name="rental-type" value="Long Term">
+    <label for="long-term">Long Term</label>
+</div>
 
 <div id="end-date-container" style="display:none;">
     <label for="end-date">End Date:</label>
