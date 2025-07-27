@@ -142,3 +142,8 @@ form button[type="submit"]:hover {
     from { opacity: 0; transform: translateY(20px);}
     to { opacity: 1; transform: translateY(0);}
 }
+form label,
+form#service-form label {
+    font-size: 1.2rem;
+    color: #fff;
+}
