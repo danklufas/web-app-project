@@ -23,21 +23,31 @@ body::before {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
     width: 220px;
+    height: 100vh;
     background: rgba(44,62,80,0.85);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 40px 20px;
+    padding-top: 40px;
     z-index: 2;
 }
 
 .sidebar nav ul {
-    flex-direction: column;
-    gap: 24px;
+    position: relative;
+    height: 100%;
     margin: 0;
-    padding: 0;
+    padding: 0 0 60px 0;
+    list-style: none;
+}
+
+.sidebar nav li {
+    margin-bottom: 18px;
+}
+
+.sidebar nav li:last-child {
+    margin-bottom: 0;
+}
+
+.sidebar nav li[style*="position:absolute"] {
+    margin-bottom: 0;
 }
 
 .sidebar nav a {
@@ -51,6 +61,14 @@ body::before {
 
 .sidebar nav a:hover {
     text-decoration: underline;
+}
+
+/* Pin Settings link to bottom */
+.sidebar ul li#settings-li {
+    position: absolute;
+    bottom: 24px;
+    width: 100%;
+    margin-bottom: 0;
 }
 
 /* Remove white box and card effect from main and form */
@@ -81,7 +99,9 @@ form {
 }
 
 /* Inputs and labels for visibility */
-form label {
+form label,
+form#service-form label {
+    font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 4px;
     color: #fff;
@@ -142,8 +162,20 @@ form button[type="submit"]:hover {
     from { opacity: 0; transform: translateY(20px);}
     to { opacity: 1; transform: translateY(0);}
 }
-form label,
-form#service-form label {
-    font-size: 1.2rem;
-    color: #fff;
+
+/* Dark theme styles */
+body.dark-theme {
+    background: #222 !important;
+    color: #fff !important;
+}
+body.dark-theme .sidebar {
+    background: #111 !important;
+}
+body.dark-theme a {
+    color: #fff !important;
+}
+body.dark-theme input, body.dark-theme select {
+    background: #333 !important;
+    color: #fff !important;
+    border: 1px solid #444 !important;
 }
