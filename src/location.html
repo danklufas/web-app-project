@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Location & Map</title>
     <link rel="stylesheet" href="styles/main.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
     <header>
@@ -21,7 +23,24 @@
         <h2>Our Facility Location</h2>
         <p>123 RV Lane, YourTown, ST 12345</p>
         <h3>Site Map</h3>
-        <p>[Map will go here]</p>
+        <div id="map" style="height: 400px;"></div>
     </main>
+    <!-- Leaflet JS (add just before </body>) -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+    // Replace with your facility's GPS coordinates
+    var facilityLat = 50.5923; // Example latitude
+    var facilityLng = -113.5255; // Example longitude
+
+    var map = L.map('map').setView([facilityLat, facilityLng], 15);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([facilityLat, facilityLng]).addTo(map)
+        .bindPopup('RV Storage Facility')
+        .openPopup();
+</script>
 </body>
 </html>
